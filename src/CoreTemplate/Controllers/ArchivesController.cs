@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using CoreTemplate.Contracts;
 using CoreTemplate.Entities;
+using CoreTemplate.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,8 @@ namespace CoreTemplate.Controllers
       [AllowAnonymous]
         public IActionResult Index()
         {
-            var model = _archiveData.GetAll();
+            var model = new ArchiveViewModel();
+            model.Archives = _archiveData.GetAll();
             return View(model);
         }
 
