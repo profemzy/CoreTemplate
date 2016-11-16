@@ -1,0 +1,41 @@
+﻿@model CoreTemplate.Entities.Archive
+
+@{
+    ViewData["Title"] = "New Archive";
+}
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+
+        <hr/>
+
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger" />
+            </div>
+        </div>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="CaseDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CaseDate" class="form-control datepicker" />
+                <span asp-validation-for="CaseDate" class="text-danger" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

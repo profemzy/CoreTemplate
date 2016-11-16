@@ -1,0 +1,65 @@
+﻿@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<header class="main-header">
+    @* BEGIN Logo *@
+    <a href="@Url.Action("Index", "Home")" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>L</b>AW</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>ONDO</b>LAW</span>
+    </a>
+    @* END Logo *@
+    @* BEGIN Header *@
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+             
+            @if (SignInManager.IsSignedIn(User))
+            {
+                @* BEGIN User Account Menu *@
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="~/img/user.jpg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">@UserManager.GetUserName(User) </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="user-header">
+                            <img src="~/img/user.jpg" class="img-circle" alt="User Image">
+
+                            <p>
+                                @UserManager.GetUserName(User)
+                            </p>
+                        </li>
+                        
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            </div>
+                            <div class="pull-right">
+                                <form method="post" asp-controller="Account" asp-action="Logout">
+                                    <input class="btn btn-default btn-flat" type="submit" value="Sign Out"/>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                @* END User Account Menu *@
+            }
+            else
+            {
+                <li class="pull-right"> <a asp-controller="Account" asp-action="Login">Login</a></li>
+                <li class="pull-right"> <a asp-controller="Account" asp-action="Register">Register</a></li>
+            }
+
+
+
+
+
+</ul>
+        </div>
+    </nav>
+</header>
